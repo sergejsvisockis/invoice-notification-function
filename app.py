@@ -25,7 +25,7 @@ def send_salary_notification():
 
 
 def get_invoice_data(arn, email, message):
-    mail = imaplib.IMAP4_SSL('imap.gmail.com')
+    mail = imaplib.IMAP4_SSL(os.environ["IPAM_SERVER"])
     mail.login(os.environ["USERNAME"], os.environ["PASSWORD"])
     mail.select(readonly=True)
     result = mail.search(None, 'From', email)
