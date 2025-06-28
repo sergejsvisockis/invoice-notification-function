@@ -17,4 +17,4 @@ aws sns create-topic --name invoice-notification
 3. Create a Lambda [function](https://docs.aws.amazon.com/lambda/latest/dg/getting-started.html)
 4. Define all the environment variables that are called within the `app.py` within the Environment
    variables [page](https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html)
-5. Make a Lambda function [scheduled](https://docs.aws.amazon.com/lambda/latest/dg/with-eventbridge-scheduler.html)
+6. Add a scheduled trigger for a Lambda function in the EventBridge (CloudWatch Events)
