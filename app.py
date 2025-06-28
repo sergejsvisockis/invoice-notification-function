@@ -21,7 +21,7 @@ def send_lease_notification():
 def send_salary_notification():
     get_invoice_data(topic_arn,
                      'payroll@mail.com',
-                     'Salary is here is is the time to plan your budget, forecast and invest')
+                     'Salary is here it is the time to plan your budget, forecast and invest')
 
 
 def get_invoice_data(arn, email, message):
