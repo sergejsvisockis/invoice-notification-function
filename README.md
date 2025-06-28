@@ -1,8 +1,8 @@
 # Invoice notification
 
-This is a simple AWS Lambda function which is supposed being enabled by cron and periodically run in the AWS while
-checking whether an email contains a new mails and based on that sending an SNS message into the SNS queue and further
-own as an SMS.
+This is a simple AWS Lambda function which is supposed to be enabled by cron and periodically run in the AWS.
+It will scan an inbox on whether that contains a new mails and based on that sending an SNS message into the SNS
+topic and further on as an SMS.
 
 To run this Lambda function just create a new SNS topic:
 
