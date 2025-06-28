@@ -33,9 +33,13 @@ def get_invoice_data(arn, email, message):
 
     mail.login(mail_username, mail_password)
     mail.select(readonly=True)
+
     result = mail.search(None, 'From', email)
     if result is not None:
         publish_notification(arn=arn, message=message)
+
+    mail.close()
+    mail.logout()
 
 
 def publish_notification(arn, message):
