@@ -18,7 +18,7 @@ aws iam create-role \
 --assume-role-policy-document file://trust-policy.json
 ```
 
-3. Grant a full to a SNS for that role
+3. Grant full access to an SNS for that role
 
 ```shell
 aws iam put-role-policy \
@@ -36,7 +36,7 @@ aws lambda create-function --function-name invoice-notification-function \
 --zip-file fileb://invoice-notification-function.zip
 ```
 
-5. Add all th necessary environment variables
+5. Add all the necessary environment variables
 
 ```shell
 aws lambda update-function-configuration \
