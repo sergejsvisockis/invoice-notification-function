@@ -25,13 +25,13 @@ def lambda_handler(event, context):
 
 
 def publish_notification(arn, email, message):
-    result = get_invoice_data(email)
+    result = find_unread_mail(email)
 
     if result is not None:
         publish(arn=arn, message=message)
 
 
-def get_invoice_data(email):
+def find_unread_mail(email):
     mail = imaplib.IMAP4_SSL(host=host, port=int(port))
 
     try:
