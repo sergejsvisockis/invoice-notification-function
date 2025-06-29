@@ -15,23 +15,23 @@ salary_email = os.getenv('SALARY_EMAIL')
 
 
 def lambda_handler(event, context):
-    send_lease_notification()
-    send_salary_notification()
+    publish_notification(topic_arn,
+                         lease_email,
+                         'Invoice from Qasa is here! It is the time to pay')
+
+    publish_notification(topic_arn,
+                         salary_email,
+                         'Salary is here it is the time to plan your budget, forecast and invest')
 
 
-def send_lease_notification():
-    get_invoice_data(topic_arn,
-                     lease_email,
-                     'Invoice from Qasa is here! It is the time to pay')
+def publish_notification(arn, email, message):
+    result = get_invoice_data(email)
+
+    if result is not None:
+        publish(arn=arn, message=message)
 
 
-def send_salary_notification():
-    get_invoice_data(topic_arn,
-                     salary_email,
-                     'Salary is here it is the time to plan your budget, forecast and invest')
-
-
-def get_invoice_data(arn, email, message):
+def get_invoice_data(email):
     mail = imaplib.IMAP4_SSL(host=host, port=int(port))
 
     try:
@@ -39,9 +39,7 @@ def get_invoice_data(arn, email, message):
         mail.login(username, password)
         mail.select('inbox')
 
-        result = mail.search(None, 'From', email, '(UNSEEN)')
-        if result is not None:
-            publish_notification(arn=arn, message=message)
+        return mail.search(None, 'From', email, '(UNSEEN)')
 
     except Exception as e:
         raise Exception("Failed to authenticate", e)
@@ -51,5 +49,5 @@ def get_invoice_data(arn, email, message):
         mail.logout()
 
 
-def publish_notification(arn, message):
+def publish(arn, message):
     client.publish(TargetArn=arn, Message=message)
