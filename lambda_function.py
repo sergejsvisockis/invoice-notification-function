@@ -3,7 +3,7 @@ import os
 
 import boto3
 
-client = boto3.client('sns')
+sns_client = boto3.client('sns')
 topic_arn = os.getenv('TOPIC_ARN')
 
 host = os.getenv('IMAP_SERVER')
@@ -28,7 +28,7 @@ def publish_notification(arn, email, message):
     result = find_unread_mail(email)
 
     if result is not None:
-        publish(arn=arn, message=message)
+        publish(target_arn=arn, message=message)
 
 
 def find_unread_mail(email):
@@ -49,5 +49,5 @@ def find_unread_mail(email):
         mail.logout()
 
 
-def publish(arn, message):
-    client.publish(TargetArn=arn, Message=message)
+def publish(target_arn, message):
+    sns_client.publish(TargetArn=target_arn, Message=message)
