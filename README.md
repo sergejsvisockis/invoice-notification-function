@@ -50,5 +50,4 @@ aws lambda update-function-configuration \
 aws sns create-topic --name invoice-notification
 ```
 
-7. Create a subscription via the SMS to send an SMS notifications. NOTE: AWS has a limit on how many SMS notifications
-   could be made on the monthly basis. Please, check your billing plan.
+7. Create a subscription via the SMS, email, etc.
