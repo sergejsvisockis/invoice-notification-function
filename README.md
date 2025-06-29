@@ -13,7 +13,7 @@ topic and further on as an SMS.
 ```shell
 aws iam create-role \
 --role-name invoice-notification-lambda \
---assume-role-policy-document file://aws/trust-policy.json
+--assume-role-policy-document file://trust-policy.json
 ```
 
 3. Grant a full to a SNS for that role
@@ -22,7 +22,7 @@ aws iam create-role \
 aws iam put-role-policy \
 --role-name invoice-notification-lambda \
 --policy-name LambdaSNSFullAccess \
---policy-document file://aws/sns-full-access.json
+--policy-document file://sns-full-access.json
 ```
 
 4. Deploy Lambda function
