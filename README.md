@@ -8,6 +8,8 @@ topic and further on as an SMS.
 
 1. Follow
    these [steps](https://docs.aws.amazon.com/lambda/latest/dg/python-package.html#python-package-create-dependencies)
+   and name a zip archive like this - `invoice-notification-function.zip`
+
 2. Create an IAM role
 
 ```shell
